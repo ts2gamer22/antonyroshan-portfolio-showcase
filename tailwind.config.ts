@@ -57,7 +57,7 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['Geist', 'sans-serif']
+				sans: ['Inter', 'sans-serif']
 			},
 			backgroundImage: {
 				'hero-gradient': 'var(--gradient-hero)',
