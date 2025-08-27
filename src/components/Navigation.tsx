@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Menu, X } from 'lucide-react';
 
 const Navigation = () => {
@@ -42,9 +43,7 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button variant="cta" size="sm" asChild>
-              <a href="/cv.pdf" download>Download CV</a>
-            </Button>
+            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
@@ -77,10 +76,8 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="pt-2">
-              <Button variant="cta" size="sm" className="w-full" asChild>
-                <a href="/cv.pdf" download>Download CV</a>
-              </Button>
+            <div className="pt-2 flex justify-center">
+              <ThemeToggle />
             </div>
           </div>
         </div>

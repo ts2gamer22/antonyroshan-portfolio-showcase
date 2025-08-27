@@ -1,40 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from 'lucide-react';
-import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
+import { Mail, Linkedin, Instagram } from 'lucide-react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const { toast } = useToast();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically handle form submission
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
-
   return (
     <>
       <Navigation />
@@ -50,154 +18,47 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Form & Info */}
+        {/* Contact Information */}
         <section className="px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <Card className="p-8 shadow-card">
-                <h2 className="text-2xl font-bold text-foreground mb-6">Send a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your full name"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="your.email@example.com"
-                        required
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="Research collaboration, Job opportunity, etc."
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Please share details about your inquiry..."
-                      className="min-h-32"
-                      required
-                    />
-                  </div>
-                  
-                  <Button type="submit" variant="cta" size="lg" className="w-full">
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </Button>
-                </form>
-              </Card>
+          <div className="max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              
+              {/* Email */}
+              <a 
+                href="mailto:antonyroshan03@gmail.com"
+                className="group flex flex-col items-center p-8 rounded-2xl bg-card shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105"
+              >
+                <div className="p-4 bg-primary/10 rounded-full mb-4 group-hover:bg-primary/20 transition-colors">
+                  <Mail className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Email</h3>
+                <p className="text-muted-foreground text-center text-sm">antonyroshan03@gmail.com</p>
+              </a>
 
-              {/* Contact Information */}
-              <div className="space-y-8">
-                {/* Direct Contact */}
-                <Card className="p-8 shadow-card">
-                  <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
-                  <div className="space-y-6">
-                    <a 
-                      href="mailto:antonyroshan03@gmail.com"
-                      className="flex items-center space-x-4 p-4 rounded-lg hover:bg-muted transition-smooth"
-                    >
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <Mail className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground">Email</h4>
-                        <p className="text-muted-foreground">antonyroshan03@gmail.com</p>
-                      </div>
-                    </a>
+              {/* LinkedIn */}
+              <a 
+                href="#" 
+                className="group flex flex-col items-center p-8 rounded-2xl bg-card shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105"
+              >
+                <div className="p-4 bg-blue-500/10 rounded-full mb-4 group-hover:bg-blue-500/20 transition-colors">
+                  <Linkedin className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">LinkedIn</h3>
+                <p className="text-muted-foreground text-center text-sm">Professional Profile</p>
+              </a>
 
-                    <a 
-                      href="tel:+919884629287"
-                      className="flex items-center space-x-4 p-4 rounded-lg hover:bg-muted transition-smooth"
-                    >
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <Phone className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground">Phone</h4>
-                        <p className="text-muted-foreground">+91 9884629287</p>
-                      </div>
-                    </a>
+              {/* Instagram */}
+              <a 
+                href="#" 
+                className="group flex flex-col items-center p-8 rounded-2xl bg-card shadow-card hover:shadow-hover transition-all duration-300 hover:scale-105"
+              >
+                <div className="p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full mb-4 group-hover:from-purple-500/20 group-hover:to-pink-500/20 transition-colors">
+                  <Instagram className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">Instagram</h3>
+                <p className="text-muted-foreground text-center text-sm">Personal Updates</p>
+              </a>
 
-                    <div className="flex items-center space-x-4 p-4 rounded-lg">
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <MapPin className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground">Location</h4>
-                        <p className="text-muted-foreground">Chennai, Tamil Nadu, India</p>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-
-                {/* Professional Links */}
-                <Card className="p-8 shadow-card">
-                  <h3 className="text-2xl font-bold text-foreground mb-6">Professional Profiles</h3>
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground mb-4">
-                      Connect with me on professional platforms:
-                    </p>
-                    <div className="flex space-x-4">
-                      <Button variant="professional" size="lg" asChild>
-                        <a href="#" className="flex items-center space-x-2">
-                          <Linkedin className="h-5 w-5" />
-                          <span>LinkedIn</span>
-                        </a>
-                      </Button>
-                      <Button variant="professional" size="lg" asChild>
-                        <a href="#" className="flex items-center space-x-2">
-                          <Github className="h-5 w-5" />
-                          <span>GitHub</span>
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-
-                {/* Quick Download */}
-                <Card className="p-8 shadow-card bg-card-gradient">
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Download My CV</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Get a comprehensive overview of my academic background, research experience, 
-                    and technical skills.
-                  </p>
-                  <Button variant="hero" size="lg" asChild className="w-full">
-                    <a href="/cv.pdf" download>
-                      Download CV
-                    </a>
-                  </Button>
-                </Card>
-              </div>
             </div>
           </div>
         </section>
@@ -205,21 +66,13 @@ const Contact = () => {
         {/* Call to Action */}
         <section className="px-4 sm:px-6 lg:px-8 mt-20">
           <div className="max-w-4xl mx-auto text-center">
-            <Card className="p-12 shadow-card bg-hero-gradient text-primary-foreground">
+            <div className="p-12 rounded-2xl bg-hero-gradient text-primary-foreground shadow-glow">
               <h2 className="text-3xl font-bold mb-4">Let's Collaborate</h2>
-              <p className="text-xl mb-8 opacity-90">
+              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
                 Whether you're interested in research collaboration, have exciting career opportunities, 
-                or want to discuss innovative projects in chemical engineering and machine learning, 
-                I'd love to hear from you.
+                or want to discuss innovative projects in chemical engineering and machine learning.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="secondary" size="lg" asChild>
-                  <a href="mailto:antonyroshan03@gmail.com">
-                    Send Email Directly
-                  </a>
-                </Button>
-              </div>
-            </Card>
+            </div>
           </div>
         </section>
       </main>

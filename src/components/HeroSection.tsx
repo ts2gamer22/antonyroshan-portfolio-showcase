@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import antonyHeadshot from '@/assets/antony-headshot.jpg';
 
 const HeroSection = () => {
@@ -15,16 +15,14 @@ const HeroSection = () => {
                 Antony Roshan
               </h1>
               <p className="text-xl lg:text-2xl text-muted-foreground font-light">
-                Chemical Engineering Student | Researcher | Machine Learning Enthusiast
+                Doctoral Student | Johns Hopkins University | Chemical & Biomolecular Engineering
               </p>
             </div>
 
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-                A final-year Chemical Engineering student at IIT Madras with a passion for applying 
-                machine learning and computational modeling to solve complex problems in bioreactor 
-                design and neuroplasticity. Seeking opportunities to leverage my skills in challenging 
-                research or engineering roles.
+                I'm a current doctoral student at Johns Hopkins University in the Department of Chemical and Biomolecular Engineering, 
+                with expertise in machine learning, computational modeling, and bioprocess engineering.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -35,10 +33,10 @@ const HeroSection = () => {
                   </Link>
                 </Button>
                 <Button variant="professional" size="lg" asChild>
-                  <a href="/cv.pdf" download className="group">
-                    <Download className="group-hover:scale-110 transition-transform" />
-                    Download CV
-                  </a>
+                  <Link to="/contact" className="group">
+                    <Mail className="group-hover:scale-110 transition-transform" />
+                    Get In Touch
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -46,16 +44,16 @@ const HeroSection = () => {
             {/* Quick Stats */}
             <div className="flex flex-wrap gap-8 pt-8">
               <div className="text-center">
+                <div className="text-2xl font-bold text-primary">PhD</div>
+                <div className="text-sm text-muted-foreground">Johns Hopkins</div>
+              </div>
+              <div className="text-center">
                 <div className="text-2xl font-bold text-primary">#1</div>
-                <div className="text-sm text-muted-foreground">Ranked in Cohort</div>
+                <div className="text-sm text-muted-foreground">IIT Madras Cohort</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">IIT Madras</div>
-                <div className="text-sm text-muted-foreground">Chemical Engineering</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary">2024</div>
-                <div className="text-sm text-muted-foreground">Expected Graduate</div>
+                <div className="text-2xl font-bold text-primary">2025</div>
+                <div className="text-sm text-muted-foreground">Current Year</div>
               </div>
             </div>
           </div>
