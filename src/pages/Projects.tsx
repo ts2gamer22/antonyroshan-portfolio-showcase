@@ -1,8 +1,18 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import AnimatedProjectCard from '@/components/projects/AnimatedProjectCard';
+import ProjectGrid from '@/components/projects/ProjectGrid';
+import ProjectFilters from '@/components/projects/ProjectFilters';
 import { Brain, Microscope, Shield, Factory, BarChart3, Network } from 'lucide-react';
+import { useMemo, useState } from 'react';
+
+// Import project images
+import neuroplasticityImg from '@/assets/project-neuroplasticity.jpg';
+import unileverImg from '@/assets/project-unilever.jpg';
+import ppeImg from '@/assets/project-ppe.jpg';
+import wabagImg from '@/assets/project-wabag.jpg';
+import drugDeliveryImg from '@/assets/project-drug-delivery.jpg';
+import metabolicImg from '@/assets/project-metabolic.jpg';
 
 const Projects = () => {
   const projects = [
@@ -13,6 +23,7 @@ const Projects = () => {
       duration: "August 2024 - Present",
       guide: "Dr. Parag Verma, Department of Chemical Engineering, IIT Madras",
       icon: Brain,
+      image: neuroplasticityImg,
       description: "Literature review of prior works on modeling neuroplasticity using holistic machine learning perspectives.",
       achievements: [
         "Formulated an optimisation problem to determine plasticity weights between interconnecting brain regions",
@@ -28,6 +39,7 @@ const Projects = () => {
       duration: "May 2024 - July 2024",
       guide: "Mrs. Sarmishta Biswas, Global R&D Director, Future Care Formats, Home Care",
       icon: Microscope,
+      image: unileverImg,
       description: "Worked on occupancy-driven 50L bioreactor using the laundry detergent unit by reducing the linker CQ2 diffusing substances by 50%.",
       achievements: [
         "Explored over 30 different surfactant chemistries to understand molecular packing and synergistic binding of head groups",
@@ -43,6 +55,7 @@ const Projects = () => {
       duration: "August 2024 - December 2024", 
       guide: "Dr. Smaraj GJ, Department of Mechanical Engineering, IIT Madras",
       icon: Shield,
+      image: ppeImg,
       description: "Built an end-to-end detection model for identifying employees violating PPE requirements in various working scenarios.",
       achievements: [
         "Created an object detection, environment identification and facial recognition model for the above purposes",
@@ -57,6 +70,7 @@ const Projects = () => {
       duration: "June 2023 - July 2023",
       guide: "Mr. Bharat Thomas",
       icon: Factory,
+      image: wabagImg,
       description: "Analysed and encapsulated the technical requirements for the upcoming 400Cr+ Dhaka Government STP project.",
       achievements: [
         "Spearheaded the project by conducting a holistic literature review on over 50 rising advanced water treatment techniques", 
@@ -71,6 +85,7 @@ const Projects = () => {
       duration: "August 2023 - December 2023",
       guide: "Dr. Jeyaprakash R., Department of Chemical Engineering, IIT Madras",
       icon: BarChart3,
+      image: drugDeliveryImg,
       description: "Developed a simulation model to understand physical diffusion and chemical reaction of erodible polymers in drug delivery.",
       achievements: [
         "Simplified the complexity of previous existing models through system analysis by reducing system variables from over 10 to 6",
@@ -85,6 +100,7 @@ const Projects = () => {
       duration: "December 2022 - November 2023",
       guide: "Dr. Karthik Raman, Department of Biotechnology, IIT Madras",
       icon: Network,
+      image: metabolicImg,
       description: "Developing algorithms to maximize desired product secretion in communities of unicellular organisms.",
       achievements: [
         "Optimized substrate production 90+ common microbial communities using both OptCom and SteadyCom",
@@ -94,10 +110,23 @@ const Projects = () => {
     }
   ];
 
+  const categories = useMemo(() => {
+    const set = new Set<string>();
+    projects.forEach(p => set.add(p.category));
+    return ['All', ...Array.from(set)];
+  }, [projects]);
+
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === 'All') return projects;
+    return projects.filter(p => p.category === activeCategory);
+  }, [activeCategory, projects]);
+
   return (
     <>
       <Navigation />
-      <main className="pt-24 pb-16">
+      <main id="main-content" className="pt-24 pb-16">
         {/* Hero Section */}
         <section className="px-4 sm:px-6 lg:px-8 mb-16">
           <div className="max-w-4xl mx-auto text-center space-y-6">
@@ -109,85 +138,26 @@ const Projects = () => {
           </div>
         </section>
 
-        {/* Projects Grid */}
+        {/* Filters + Projects Grid */}
         <section className="px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto space-y-12">
-            {projects.map((project) => {
-              const IconComponent = project.icon;
-              return (
-                <Card key={project.id} className="overflow-hidden shadow-card hover:shadow-hover transition-all duration-300">
-                  <div className="p-8">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="p-3 bg-primary/10 rounded-xl">
-                          <IconComponent className="h-8 w-8 text-primary" />
-                        </div>
-                        <div className="space-y-2">
-                          <h3 className="text-2xl font-bold text-foreground leading-tight">
-                            {project.title}
-                          </h3>
-                          <div className="flex flex-wrap items-center gap-3">
-                            <Badge variant="secondary" className="text-sm">
-                              {project.category}
-                            </Badge>
-                            <span className="text-sm text-muted-foreground">
-                              {project.duration}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Guide */}
-                    <div className="mb-6 p-4 bg-accent-light rounded-lg">
-                      <p className="text-sm text-muted-foreground font-medium">
-                        <span className="font-semibold">Guide:</span> {project.guide}
-                      </p>
-                    </div>
-
-                    {/* Description */}
-                    <div className="mb-6">
-                      <p className="text-muted-foreground leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
-
-                    {/* Achievements */}
-                    <div className="mb-6">
-                      <h4 className="text-lg font-semibold text-foreground mb-3">Key Contributions</h4>
-                      <ul className="space-y-2">
-                        {project.achievements.map((achievement, index) => (
-                          <li key={index} className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-muted-foreground leading-relaxed">{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Skills */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground mb-3">Skills & Technologies</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.skills.map((skill, index) => (
-                          <Badge key={index} variant="outline" className="text-xs">
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              );
-            })}
+          <div className="max-w-6xl mx-auto space-y-8">
+            <ProjectFilters 
+              categories={categories}
+              activeCategory={activeCategory}
+              onChange={setActiveCategory}
+            />
+            <ProjectGrid>
+              {filteredProjects.map((project, index) => (
+                <AnimatedProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </ProjectGrid>
           </div>
         </section>
 
         {/* Certifications Section */}
         <section className="px-4 sm:px-6 lg:px-8 mt-20">
           <div className="max-w-4xl mx-auto">
-            <Card className="p-8 shadow-card bg-card-gradient">
+            <div className="p-8 rounded-2xl bg-card shadow-card">
               <h2 className="text-3xl font-bold text-foreground mb-6 text-center">Certifications & Online Learning</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
@@ -209,7 +179,7 @@ const Projects = () => {
                   </ul>
                 </div>
               </div>
-            </Card>
+            </div>
           </div>
         </section>
       </main>

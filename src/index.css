@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -101,7 +102,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-['Inter',sans-serif] antialiased;
+    @apply bg-background text-foreground font-['Geist',sans-serif] antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -129,4 +130,24 @@
   .transition-smooth {
     transition: var(--transition-smooth);
   }
+
+  /* Link underline grow (uses primary color) */
+  .link-underline {
+    background-image: linear-gradient(hsl(var(--primary)), hsl(var(--primary)));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 2px;
+  }
+
+  /* Generic interactive hover/press micro-interactions */
+  .interactive {
+    will-change: transform;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .interactive:hover { transform: translateY(-1px) scale(1.02); }
+  .interactive:active { transform: translateY(0px) scale(0.98); }
 }

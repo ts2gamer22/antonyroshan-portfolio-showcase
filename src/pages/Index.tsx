@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content">
         <HeroSection />
         <FeaturedProjects />
       </main>

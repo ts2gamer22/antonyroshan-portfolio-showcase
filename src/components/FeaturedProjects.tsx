@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Microscope, Shield, Factory } from 'lucide-react';
+import Reveal from '@/components/Reveal';
 
 const projects = [
   {
@@ -45,7 +46,7 @@ const projects = [
 const FeaturedProjects = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
+      <div className="container">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl font-bold text-foreground">Featured Projects</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -57,13 +58,13 @@ const FeaturedProjects = () => {
           {projects.map((project) => {
             const IconComponent = project.icon;
             return (
-              <Card 
-                key={project.id} 
-                className={`p-8 transition-all duration-300 hover:shadow-hover hover:-translate-y-2 border-0 shadow-card ${
-                  project.highlight ? 'bg-card-gradient ring-2 ring-primary/10' : 'bg-card'
-                }`}
-              >
-                <div className="space-y-6">
+              <Reveal key={project.id}>
+                <Card 
+                  className={`p-8 transition-all duration-300 hover:shadow-hover hover:-translate-y-2 border-0 shadow-card ${
+                    project.highlight ? 'bg-card-gradient ring-2 ring-primary/10' : 'bg-card'
+                  }`}
+                >
+                  <div className="space-y-6">
                   <div className="flex items-start justify-between">
                     <div className={`p-3 rounded-xl ${
                       project.highlight ? 'bg-primary/10' : 'bg-muted'
@@ -89,13 +90,14 @@ const FeaturedProjects = () => {
                     </p>
                   </div>
                 </div>
-              </Card>
+                </Card>
+              </Reveal>
             );
           })}
         </div>
 
         <div className="text-center">
-          <Button variant="cta" size="lg" asChild>
+          <Button variant="cta" size="lg" className="interactive" asChild>
             <Link to="/projects" className="group">
               View All Projects
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />

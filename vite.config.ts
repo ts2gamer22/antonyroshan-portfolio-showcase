@@ -7,7 +7,13 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 8080,
+    port: 5173, // avoid Docker's 8080
+    strictPort: true,
+  },
+  preview: {
+    host: "::",
+    port: 5174,
+    strictPort: true,
   },
   plugins: [
     react(),

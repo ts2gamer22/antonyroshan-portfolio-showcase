@@ -1,227 +1,199 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from 'lucide-react';
-import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
+import ContactForm from "@/components/ContactForm";
+import { Mail, Linkedin, Instagram, Github, Twitter } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const { toast } = useToast();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically handle form submission
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
+  const socialLinks = [
+    {
+      icon: Mail,
+      label: 'Email',
+      href: 'mailto:antonyroshan03@gmail.com',
+      description: 'antonyroshan03@gmail.com',
+      color: 'from-blue-500 to-blue-600',
+      hoverColor: 'hover:from-blue-600 hover:to-blue-700'
+    },
+    {
+      icon: Linkedin,
+      label: 'LinkedIn',
+      href: 'https://linkedin.com/in/antonyroshan',
+      description: 'Professional Profile',
+      color: 'from-blue-600 to-blue-700',
+      hoverColor: 'hover:from-blue-700 hover:to-blue-800'
+    },
+    {
+      icon: Github,
+      label: 'GitHub',
+      href: 'https://github.com/antonyroshan',
+      description: 'Code Repository',
+      color: 'from-gray-700 to-gray-800',
+      hoverColor: 'hover:from-gray-800 hover:to-gray-900'
+    },
+    {
+      icon: Instagram,
+      label: 'Instagram',
+      href: 'https://instagram.com/antonyroshan',
+      description: 'Personal Updates',
+      color: 'from-purple-500 to-pink-500',
+      hoverColor: 'hover:from-purple-600 hover:to-pink-600'
+    },
+  ];
 
   return (
     <>
       <Navigation />
-      <main className="pt-24 pb-16">
+      <Toaster position="bottom-right" />
+      <main id="main-content" className="pt-24 pb-16">
         {/* Hero Section */}
-        <section className="px-4 sm:px-6 lg:px-8 mb-16">
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="px-4 sm:px-6 lg:px-8 mb-16"
+        >
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-5xl font-bold text-foreground">Get In Touch</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               I'm always interested in discussing research opportunities, academic collaborations, 
               or potential career opportunities in engineering and technology.
             </p>
           </div>
-        </section>
+        </motion.section>
 
-        {/* Contact Form & Info */}
-        <section className="px-4 sm:px-6 lg:px-8">
+        {/* Contact Form Section */}
+        <section className="px-4 sm:px-6 lg:px-8 mb-20">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <Card className="p-8 shadow-card">
+              {/* Form */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
                 <h2 className="text-2xl font-bold text-foreground mb-6">Send a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your full name"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="your.email@example.com"
-                        required
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="Research collaboration, Job opportunity, etc."
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Please share details about your inquiry..."
-                      className="min-h-32"
-                      required
-                    />
-                  </div>
-                  
-                  <Button type="submit" variant="cta" size="lg" className="w-full">
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </Button>
-                </form>
-              </Card>
+                <ContactForm />
+              </motion.div>
 
-              {/* Contact Information */}
-              <div className="space-y-8">
-                {/* Direct Contact */}
-                <Card className="p-8 shadow-card">
-                  <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
-                  <div className="space-y-6">
-                    <a 
-                      href="mailto:antonyroshan03@gmail.com"
-                      className="flex items-center space-x-4 p-4 rounded-lg hover:bg-muted transition-smooth"
-                    >
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <Mail className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground">Email</h4>
-                        <p className="text-muted-foreground">antonyroshan03@gmail.com</p>
-                      </div>
-                    </a>
+              {/* Contact Cards */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="space-y-6"
+              >
+                <h2 className="text-2xl font-bold text-foreground mb-6">Connect With Me</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {socialLinks.map((link, index) => {
+                    const Icon = link.icon;
+                    return (
+                      <motion.a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                        whileHover={{ scale: 1.05, rotate: 1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="group relative flex items-center p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 overflow-hidden"
+                      >
+                        <div className={`absolute inset-0 bg-gradient-to-r ${link.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                        <div className={`p-3 rounded-lg bg-gradient-to-r ${link.color} text-white mr-4`}>
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-foreground">{link.label}</h3>
+                          <p className="text-xs text-muted-foreground">{link.description}</p>
+                        </div>
+                        <motion.div
+                          className="opacity-0 group-hover:opacity-100 transition-opacity"
+                          initial={{ x: -10 }}
+                          whileHover={{ x: 0 }}
+                        >
+                          <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </motion.div>
+                      </motion.a>
+                    );
+                  })}
+                </div>
 
-                    <a 
-                      href="tel:+919884629287"
-                      className="flex items-center space-x-4 p-4 rounded-lg hover:bg-muted transition-smooth"
-                    >
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <Phone className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground">Phone</h4>
-                        <p className="text-muted-foreground">+91 9884629287</p>
-                      </div>
-                    </a>
-
-                    <div className="flex items-center space-x-4 p-4 rounded-lg">
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <MapPin className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground">Location</h4>
-                        <p className="text-muted-foreground">Chennai, Tamil Nadu, India</p>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-
-                {/* Professional Links */}
-                <Card className="p-8 shadow-card">
-                  <h3 className="text-2xl font-bold text-foreground mb-6">Professional Profiles</h3>
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground mb-4">
-                      Connect with me on professional platforms:
+                {/* Additional Info */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="mt-8 p-6 rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20"
+                >
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Availability</h3>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <p className="flex items-center">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                      Currently available for opportunities
                     </p>
-                    <div className="flex space-x-4">
-                      <Button variant="professional" size="lg" asChild>
-                        <a href="#" className="flex items-center space-x-2">
-                          <Linkedin className="h-5 w-5" />
-                          <span>LinkedIn</span>
-                        </a>
-                      </Button>
-                      <Button variant="professional" size="lg" asChild>
-                        <a href="#" className="flex items-center space-x-2">
-                          <Github className="h-5 w-5" />
-                          <span>GitHub</span>
-                        </a>
-                      </Button>
-                    </div>
+                    <p>📍 Chennai, Tamil Nadu, India</p>
+                    <p>📞 +91 9884629287</p>
+                    <p>⏰ Response time: Within 24 hours</p>
                   </div>
-                </Card>
-
-                {/* Quick Download */}
-                <Card className="p-8 shadow-card bg-card-gradient">
-                  <h3 className="text-2xl font-bold text-foreground mb-4">Download My CV</h3>
-                  <p className="text-muted-foreground mb-6">
-                    Get a comprehensive overview of my academic background, research experience, 
-                    and technical skills.
-                  </p>
-                  <Button variant="hero" size="lg" asChild className="w-full">
-                    <a href="/cv.pdf" download>
-                      Download CV
-                    </a>
-                  </Button>
-                </Card>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </section>
 
         {/* Call to Action */}
-        <section className="px-4 sm:px-6 lg:px-8 mt-20">
+        <motion.section 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="px-4 sm:px-6 lg:px-8 mt-20"
+        >
           <div className="max-w-4xl mx-auto text-center">
-            <Card className="p-12 shadow-card bg-hero-gradient text-primary-foreground">
-              <h2 className="text-3xl font-bold mb-4">Let's Collaborate</h2>
-              <p className="text-xl mb-8 opacity-90">
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="p-12 rounded-2xl bg-hero-gradient text-primary-foreground shadow-glow relative overflow-hidden"
+            >
+              <motion.div
+                className="absolute inset-0 bg-white/5"
+                animate={{
+                  backgroundImage: [
+                    'radial-gradient(circle at 20% 50%, transparent 50%, rgba(255,255,255,0.1) 100%)',
+                    'radial-gradient(circle at 80% 50%, transparent 50%, rgba(255,255,255,0.1) 100%)',
+                    'radial-gradient(circle at 20% 50%, transparent 50%, rgba(255,255,255,0.1) 100%)',
+                  ],
+                }}
+                transition={{ duration: 5, repeat: Infinity }}
+              />
+              <h2 className="text-3xl font-bold mb-4 relative z-10">Let's Collaborate</h2>
+              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto relative z-10">
                 Whether you're interested in research collaboration, have exciting career opportunities, 
-                or want to discuss innovative projects in chemical engineering and machine learning, 
-                I'd love to hear from you.
+                or want to discuss innovative projects in chemical engineering and machine learning.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="secondary" size="lg" asChild>
-                  <a href="mailto:antonyroshan03@gmail.com">
-                    Send Email Directly
-                  </a>
-                </Button>
-              </div>
-            </Card>
+              <motion.div
+                className="flex justify-center gap-4 relative z-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <motion.a
+                  href="/cv.pdf"
+                  download
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 bg-white/20 backdrop-blur-sm rounded-lg font-medium hover:bg-white/30 transition-colors"
+                >
+                  Download CV
+                </motion.a>
+              </motion.div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
       </main>
       <Footer />
     </>
