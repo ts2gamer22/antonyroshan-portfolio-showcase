@@ -7,7 +7,6 @@ import { TextSplitter, fadeUpVariants } from '@/components/TextSplitter';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import AuroraBackground from '@/components/backgrounds/AuroraBackground';
 import FloatingParticles from '@/components/backgrounds/FloatingParticles';
-import ThreeHeroCanvas from '@/components/backgrounds/ThreeHeroCanvas';
 import antonyHeadshot from '@/assets/anto.jpeg';
 
 const HeroSectionEnhanced = () => {
@@ -117,7 +116,6 @@ const HeroSectionEnhanced = () => {
         color="rgba(120, 119, 198, 0.08)" 
         className="z-0"
       />
-      <ThreeHeroCanvas />
       
       <section ref={heroRef} className="relative pt-32 pb-20 px-6 sm:px-8 lg:px-12 min-h-screen flex items-center">
         <div className="container max-w-7xl mx-auto relative z-10">

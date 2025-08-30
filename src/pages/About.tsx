@@ -3,9 +3,10 @@ import Footer from "@/components/Footer";
 import TimelineDemo from "@/components/timeline-demo";
 import { Badge } from "@/components/ui/badge";
 import PullQuote from "@/components/PullQuote";
-import Skills from "@/components/Skills";
+import SkillsNew from "@/components/SkillsNew";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import antoDarkImage from '@/assets/antodark.png';
 
 const About = () => {
   const interests = [
@@ -74,6 +75,21 @@ const About = () => {
               Antony's unique ability to combine rigorous engineering principles with advanced machine learning 
               techniques has resulted in groundbreaking research in bioprocess optimization.
             </PullQuote>
+            
+            {/* Image Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-12 mb-8"
+            >
+              <img
+                src={antoDarkImage}
+                alt="Antony Roshan"
+                className="w-full max-w-3xl mx-auto rounded-2xl shadow-2xl"
+              />
+            </motion.div>
           </div>
         </section>
 
@@ -95,7 +111,7 @@ const About = () => {
 
         {/* Skills Section */}
         <section className="px-4 sm:px-6 lg:px-8 mb-16">
-          <Skills />
+          <SkillsNew />
         </section>
 
         {/* Research Interests */}
