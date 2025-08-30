@@ -6,13 +6,17 @@ import ProjectFilters from '@/components/projects/ProjectFilters';
 import { Brain, Microscope, Shield, Factory, BarChart3, Network } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
-// Import project images
-import neuroplasticityImg from '@/assets/project-neuroplasticity.jpg';
-import unileverImg from '@/assets/project-unilever.jpg';
-import ppeImg from '@/assets/project-ppe.jpg';
-import wabagImg from '@/assets/project-wabag.jpg';
-import drugDeliveryImg from '@/assets/project-drug-delivery.jpg';
-import metabolicImg from '@/assets/project-metabolic.jpg';
+// Import project images - Using fallback for missing images
+// TODO: Add actual project images to src/assets/ folder
+const placeholderImage = 'https://via.placeholder.com/600x400/1a1f36/8b92a9?text=Project+Image';
+
+// For now, using placeholder images until actual images are added
+const neuroplasticityImg = placeholderImage;
+const unileverImg = placeholderImage;
+const ppeImg = placeholderImage;
+const wabagImg = placeholderImage;
+const drugDeliveryImg = placeholderImage;
+const metabolicImg = placeholderImage;
 
 const Projects = () => {
   const projects = [

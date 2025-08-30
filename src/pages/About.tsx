@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import Timeline from "@/components/Timeline";
+import TimelineDemo from "@/components/timeline-demo";
 import { Badge } from "@/components/ui/badge";
 import PullQuote from "@/components/PullQuote";
 import Skills from "@/components/Skills";
@@ -89,7 +89,7 @@ const About = () => {
             >
               Academic Journey
             </motion.h2>
-            <Timeline />
+            <TimelineDemo />
           </div>
         </section>
 

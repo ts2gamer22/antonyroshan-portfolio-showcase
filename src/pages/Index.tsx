@@ -1,5 +1,5 @@
 import Navigation from "@/components/Navigation";
-import HeroSection from "@/components/HeroSection";
+import HeroSectionEnhanced from "@/components/HeroSectionEnhanced";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import Footer from "@/components/Footer";
 
@@ -8,7 +8,7 @@ const Index = () => {
     <>
       <Navigation />
       <main id="main-content">
-        <HeroSection />
+        <HeroSectionEnhanced />
         <FeaturedProjects />
       </main>
       <Footer />

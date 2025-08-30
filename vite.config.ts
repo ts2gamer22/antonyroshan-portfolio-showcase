@@ -15,6 +15,8 @@ export default defineConfig(({ mode }) => ({
     port: 5174,
     strictPort: true,
   },
+  // Dynamic base for GitHub Pages deployments (set via env)
+  base: process.env.VITE_BASE || "/",
   plugins: [
     react(),
     mode === 'development' &&
