@@ -249,4 +249,7 @@ const Skills = ({ skills = defaultSkills }: SkillsProps) => {
   );
 };
 
+// This version is now deprecated. See SkillsNew.tsx for the new (icon-based) categorized skill grid.
+// (Kept for historical reference or if referenced elsewhere in legacy code)
+
 export default Skills;

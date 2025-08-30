@@ -44,6 +44,25 @@ const About = () => {
           </div>
         </motion.section>
 
+        {/* About Image (placed directly after hero) */}
+        <section className="px-4 sm:px-6 lg:px-8 mb-16">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-12 mb-8"
+            >
+              <img
+                src={antoDarkImage}
+                alt="Antony Roshan"
+                className="w-full max-w-3xl mx-auto rounded-2xl shadow-2xl"
+              />
+            </motion.div>
+          </div>
+        </section>
+
         {/* Personal Statement */}
         <section className="px-4 sm:px-6 lg:px-8 mb-16">
           <div className="max-w-4xl mx-auto">
@@ -76,20 +95,6 @@ const About = () => {
               techniques has resulted in groundbreaking research in bioprocess optimization.
             </PullQuote>
             
-            {/* Image Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="mt-12 mb-8"
-            >
-              <img
-                src={antoDarkImage}
-                alt="Antony Roshan"
-                className="w-full max-w-3xl mx-auto rounded-2xl shadow-2xl"
-              />
-            </motion.div>
           </div>
         </section>
 
