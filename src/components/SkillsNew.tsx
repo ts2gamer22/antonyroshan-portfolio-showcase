@@ -25,7 +25,7 @@ export default function SkillsNew() {
           {/* Icon constellation */}
           <div className="relative mx-auto flex max-w-sm items-center justify-between">
             {/* Left column */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <IntegrationCard position="left-top">
                 <IconImg {...leftIcons[0]} />
               </IntegrationCard>
@@ -39,8 +39,8 @@ export default function SkillsNew() {
 
             {/* Center tile */}
             <div className="mx-auto my-2 flex w-fit justify-center gap-2">
-              <div className="relative z-20 rounded-2xl border border-black/25 p-1 shadow-xl shadow-black/10 dark:border-white/25 dark:shadow-white/10">
-                <IntegrationCard className="size-16 dark:bg-background" isCenter>
+              <div className="relative z-20 rounded-2xl shadow-xl shadow-black/10 dark:shadow-white/10">
+                <IntegrationCard className="size-20 dark:bg-background" isCenter>
                   <CenterMark />
                 </IntegrationCard>
               </div>
@@ -53,7 +53,7 @@ export default function SkillsNew() {
             />
 
             {/* Right column */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <IntegrationCard position="right-top">
                 <IconImg {...rightIcons[0]} />
               </IntegrationCard>
@@ -85,7 +85,7 @@ function IconImg({ src, alt }: { src: string; alt: string }) {
     <img
       src={src}
       alt={alt}
-      className="size-6"
+      className="size-10 sm:size-12 md:size-12"
       onError={(e) => {
         const el = e.currentTarget as HTMLImageElement;
         if (el.src !== window.location.origin + '/placeholder.svg') {
@@ -108,8 +108,8 @@ type Pos = 'left-top' | 'left-middle' | 'left-bottom' | 'right-top' | 'right-mid
 
 const IntegrationCard = ({ children, className, position, isCenter = false }: { children: React.ReactNode; className?: string; position?: Pos; isCenter?: boolean }) => {
   return (
-    <div className={cn('bg-background relative flex size-12 rounded-xl border border-border dark:bg-transparent', className)}>
-      <div className={cn('relative z-20 m-auto size-fit *:size-6', isCenter && '*:size-8')}>{children}</div>
+    <div className={cn('bg-background relative flex size-16 rounded-xl border border-border dark:bg-transparent', className)}>
+      <div className={cn('relative z-20 m-auto size-fit *:size-12', isCenter && '*:size-[56px]')}>{children}</div>
       {position && !isCenter && (
         <div
           className={cn(
