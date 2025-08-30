@@ -1,187 +1,98 @@
-import { motion } from 'framer-motion';
-import { 
-  Beaker, 
-  Brain, 
-  FlaskConical,
-  LineChart,
-  Microscope,
-  TestTube2,
-  Code2,
-  Database,
-  GitBranch,
-  Server,
-  Terminal
-} from 'lucide-react';
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
-const SkillsNew = () => {
-  const skillCategories = [
-    {
-      title: "Programming Languages",
-      icon: Code2,
-      skills: [
-        { name: "Python", level: 95 },
-        { name: "MATLAB", level: 90 },
-        { name: "C++", level: 85 },
-        { name: "C", level: 80 },
-        { name: "R", level: 85 },
-        { name: "JavaScript", level: 75 },
-        { name: "TypeScript", level: 70 },
-      ]
-    },
-    {
-      title: "Machine Learning & AI",
-      icon: Brain,
-      skills: [
-        { name: "TensorFlow", level: 90 },
-        { name: "PyTorch", level: 85 },
-        { name: "Scikit-learn", level: 95 },
-        { name: "Neural Networks", level: 88 },
-      ]
-    },
-    {
-      title: "Data Science",
-      icon: LineChart,
-      skills: [
-        { name: "Pandas", level: 95 },
-        { name: "NumPy", level: 95 },
-        { name: "Jupyter", level: 90 },
-        { name: "Data Analysis", level: 92 },
-      ]
-    },
-    {
-      title: "Chemical Engineering",
-      icon: FlaskConical,
-      skills: [
-        { name: "Process Simulation", level: 90 },
-        { name: "Bioprocess Engineering", level: 95 },
-        { name: "Reactor Design", level: 88 },
-        { name: "Computational Modeling", level: 92 },
-      ]
-    },
-    {
-      title: "Development Tools",
-      icon: GitBranch,
-      skills: [
-        { name: "Git", level: 85 },
-        { name: "GitHub", level: 85 },
-        { name: "Docker", level: 75 },
-        { name: "Linux", level: 80 },
-        { name: "VS Code", level: 90 },
-        { name: "Anaconda", level: 88 },
-      ]
-    },
-    {
-      title: "Databases & Web",
-      icon: Database,
-      skills: [
-        { name: "MySQL", level: 80 },
-        { name: "MongoDB", level: 75 },
-        { name: "React", level: 70 },
-        { name: "HTML/CSS", level: 75 },
-      ]
-    }
+// This component mirrors the provided "Integrations" mock, adapted for Vite/React.
+// It renders 6 expertise icons you can place in public/skills as PNGs.
+
+const ICONS = [
+  { src: '/skills/python.png', alt: 'Python' },
+  { src: '/skills/matlab.png', alt: 'MATLAB' },
+  { src: '/skills/pytorch.png', alt: 'PyTorch' },
+  { src: '/skills/tensorflow.png', alt: 'TensorFlow' },
+  { src: '/skills/numpy.png', alt: 'NumPy' },
+  { src: '/skills/pandas.png', alt: 'Pandas' },
+];
+
+export default function SkillsNew() {
+  const rows = [
+    ICONS.slice(0, 2), // Row 1: Python, MATLAB
+    ICONS.slice(2, 4), // Row 2: PyTorch, TensorFlow
+    ICONS.slice(4, 6), // Row 3: NumPy, Pandas
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <div className="max-w-6xl mx-auto">
-      <motion.h2 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-3xl font-bold text-foreground mb-12 text-center"
-      >
-        Technical Skills
-      </motion.h2>
+    <section>
+      <div className="bg-muted dark:bg-background py-24 md:py-32">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="relative mx-auto w-fit">
+            {/* subtle radial overlay */}
+            <div role="presentation" className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--muted))_75%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--background))_75%)]" />
 
-      <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        {skillCategories.map((category, categoryIndex) => {
-          const Icon = category.icon;
-          return (
-            <motion.div
-              key={category.title}
-              variants={itemVariants}
-              className="bg-card border border-border rounded-xl p-6 hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground">
-                  {category.title}
-                </h3>
-              </div>
-              <div className="space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ 
-                      duration: 0.4, 
-                      delay: categoryIndex * 0.1 + skillIndex * 0.05 
-                    }}
-                    viewport={{ once: true }}
-                    className="space-y-1"
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">
-                        {skill.name}
-                      </span>
-                      <span className="text-xs text-muted-foreground">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ 
-                          duration: 1, 
-                          delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                          ease: "easeOut"
-                        }}
-                        viewport={{ once: true }}
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+            {/* Icon rows */}
+            <div className="mx-auto mb-2 flex w-fit justify-center gap-2">
+              {rows[0].map((icon) => (
+                <IntegrationCard key={icon.alt}>
+                  <IconImg {...icon} />
+                </IntegrationCard>
+              ))}
+            </div>
+
+            <div className="mx-auto my-2 flex w-fit justify-center gap-2">
+              {rows[1].map((icon) => (
+                <IntegrationCard key={icon.alt}>
+                  <IconImg {...icon} />
+                </IntegrationCard>
+              ))}
+            </div>
+
+            <div className="mx-auto flex w-fit justify-center gap-2">
+              {rows[2].map((icon) => (
+                <IntegrationCard key={icon.alt}>
+                  <IconImg {...icon} />
+                </IntegrationCard>
+              ))}
+            </div>
+          </div>
+
+          {/* Heading + CTA */}
+          <div className="mx-auto mt-6 max-w-lg space-y-6 text-center">
+            <h2 className="text-balance text-3xl font-semibold md:text-4xl">My Expertise</h2>
+            <p className="text-muted-foreground">A focused toolkit for research and engineering — drop 6 PNG icons into public/skills to populate this grid.</p>
+
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/projects">Explore Projects</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function IconImg({ src, alt }: { src: string; alt: string }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="size-8"
+      onError={(e) => {
+        // Fallback to a placeholder if the icon is not present yet
+        const el = e.currentTarget as HTMLImageElement;
+        if (el.src !== window.location.origin + '/placeholder.svg') {
+          el.src = '/placeholder.svg';
+        }
+      }}
+    />
+  );
+}
+
+const IntegrationCard = ({ children, className, borderClassName }: { children: React.ReactNode; className?: string; borderClassName?: string }) => {
+  return (
+    <div className={cn('bg-background relative flex size-20 rounded-xl dark:bg-transparent', className)}>
+      <div role="presentation" className={cn('absolute inset-0 rounded-xl border border-black/20 dark:border-white/25', borderClassName)} />
+      <div className="relative z-20 m-auto size-fit *:size-8">{children}</div>
     </div>
   );
 };
-
-export default SkillsNew;
