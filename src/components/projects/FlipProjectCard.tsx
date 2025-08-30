@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { LucideIcon, ArrowRight, Calendar, User } from 'lucide-react';
+import { LucideIcon, Calendar, User } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -77,7 +77,7 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
           </div>
 
           {/* Front content */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 space-y-5">
+          <div className="absolute bottom-0 left-0 right-0 p-8 space-y-5">
             <div className="space-y-3">
               <h3 className="text-2xl font-bold text-foreground leading-tight line-clamp-2">
                 {project.title}
@@ -106,24 +106,6 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
                 </Badge>
               )}
             </div>
-
-            {/* Hover indicator */}
-            <div className="flex items-center justify-end pt-2">
-              <motion.div
-                className="flex items-center gap-1 text-xs text-muted-foreground"
-                animate={{
-                  x: [0, 4, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <span>Hover for details</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </motion.div>
-            </div>
           </div>
         </div>
 
@@ -132,7 +114,7 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
           className={cn(
             'absolute inset-0 h-full w-full',
             '[transform:rotateY(180deg)] [backface-visibility:hidden]',
-            'rounded-2xl p-6',
+            'rounded-2xl p-8',
             'bg-card',
             'border border-border',
             'shadow-lg dark:shadow-xl',
@@ -194,7 +176,7 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
               <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                 Technologies & Skills
               </h4>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {project.skills.map((skill, index) => (
                   <motion.div
                     key={index}
@@ -205,7 +187,7 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
                       duration: 0.2,
                     }}
                   >
-                    <Badge variant="secondary" className="text-xs px-2.5 py-0.5">
+                    <Badge variant="secondary" className="text-xs px-3 py-1">
                       {skill}
                     </Badge>
                   </motion.div>

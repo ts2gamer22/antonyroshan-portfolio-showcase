@@ -8,7 +8,7 @@ interface ProjectFiltersProps {
 
 const ProjectFilters = ({ categories, activeCategory, onChange }: ProjectFiltersProps) => {
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center justify-center gap-3">
       {categories.map((cat) => {
         const isActive = activeCategory === cat;
         return (
@@ -18,13 +18,13 @@ const ProjectFilters = ({ categories, activeCategory, onChange }: ProjectFilters
             onClick={() => onChange(cat)}
             aria-pressed={isActive}
             className={`
-              px-4 py-2 rounded-full text-sm font-medium border transition-all
+              px-5 py-2.5 rounded-full text-sm font-medium border transition-all
               ${isActive
-                ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                : 'bg-background text-foreground border-border hover:bg-muted'}
+                ? 'bg-primary text-primary-foreground border-primary shadow-md'
+                : 'bg-background text-foreground border-border hover:bg-muted hover:border-muted-foreground/20'}
             `}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             {cat}
           </motion.button>
