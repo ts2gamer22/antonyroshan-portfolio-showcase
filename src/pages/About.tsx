@@ -2,11 +2,10 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import TimelineDemo from "@/components/timeline-demo";
 import { Badge } from "@/components/ui/badge";
-import PullQuote from "@/components/PullQuote";
 import SkillsNew from "@/components/SkillsNew";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import antoDarkImage from '@/assets/antodark.png';
+import antoDarkImage from '@/assets/antodark.jpeg';
 
 const About = () => {
   const interests = [
@@ -85,15 +84,7 @@ const About = () => {
                 tomorrow's most challenging problems.
               </p>
             </motion.div>
-            
-            <PullQuote 
-              author="Research Advisor"
-              role="Chemical & Biomolecular Engineering"
-              variant="default"
-            >
-              Antony's unique ability to combine rigorous engineering principles with advanced machine learning 
-              techniques has resulted in groundbreaking research in bioprocess optimization.
-            </PullQuote>
+          
             
           </div>
         </section>
