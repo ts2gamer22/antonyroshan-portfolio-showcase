@@ -27,7 +27,7 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
 
   return (
     <div
-      className="group relative h-[520px] w-full [perspective:2000px]"
+      className="group relative h-[560px] w-full [perspective:2000px]"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
     >
@@ -127,36 +127,36 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
           {/* Back gradient accent */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
           
-          <div className="relative z-10 flex flex-col h-full">
+          <div className="relative z-10 flex flex-col h-full overflow-hidden">
             {/* Header */}
-            <div className="space-y-4 mb-6">
-              <h3 className="text-xl font-bold text-foreground leading-tight">
+            <div className="space-y-3 mb-5">
+              <h3 className="text-lg font-bold text-foreground leading-tight">
                 {project.title}
               </h3>
               
               {/* Meta info */}
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Calendar className="h-3.5 w-3.5" />
                   <span>{project.duration}</span>
                 </div>
                 <div className="flex items-start gap-2 text-sm text-muted-foreground">
                   <User className="h-3.5 w-3.5 mt-0.5 flex-shrink-0" />
-                  <span className="leading-relaxed">{project.guide}</span>
+                  <span className="leading-relaxed line-clamp-2">{project.guide}</span>
                 </div>
               </div>
             </div>
 
             {/* Key Achievements */}
-            <div className="space-y-3 mb-6 flex-1">
+            <div className="space-y-3 mb-5 flex-1 overflow-y-auto">
               <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                 Key Achievements
               </h4>
-              <ul className="space-y-2.5">
-                {project.achievements.slice(0, 4).map((achievement, index) => (
+              <ul className="space-y-2">
+                {project.achievements.slice(0, 3).map((achievement, index) => (
                   <motion.li
                     key={index}
-                    className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                    className="flex items-start gap-2 text-sm text-muted-foreground"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
@@ -165,18 +165,18 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
                     }}
                   >
                     <div className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                    <span className="leading-relaxed">{achievement}</span>
+                    <span className="leading-relaxed line-clamp-2">{achievement}</span>
                   </motion.li>
                 ))}
               </ul>
             </div>
 
             {/* Technologies */}
-            <div className="space-y-3 mt-auto">
+            <div className="space-y-3">
               <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                 Technologies & Skills
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 max-h-20 overflow-y-auto">
                 {project.skills.map((skill, index) => (
                   <motion.div
                     key={index}
@@ -187,7 +187,7 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
                       duration: 0.2,
                     }}
                   >
-                    <Badge variant="secondary" className="text-xs px-3 py-1">
+                    <Badge variant="secondary" className="text-xs px-2.5 py-0.5">
                       {skill}
                     </Badge>
                   </motion.div>
