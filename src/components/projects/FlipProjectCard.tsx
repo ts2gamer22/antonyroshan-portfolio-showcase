@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { LucideIcon, ArrowRight, Code2, Rocket, Zap, Calendar, User } from 'lucide-react';
+import { LucideIcon, ArrowRight, Calendar, User } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -24,11 +24,10 @@ interface FlipProjectCardProps {
 
 const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const IconComponent = project.icon;
 
   return (
     <div
-      className="group relative h-[480px] w-full [perspective:2000px]"
+      className="group relative h-[520px] w-full [perspective:2000px]"
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
     >
@@ -56,82 +55,73 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
           )}
         >
           {/* Project Image */}
-          <div className="relative h-56 overflow-hidden">
+          <div className="relative h-48 overflow-hidden">
             <motion.img
               src={project.image}
               alt={project.title}
               className="h-full w-full object-cover"
               animate={{
-                scale: isFlipped ? 1.1 : 1,
+                scale: isFlipped ? 1.08 : 1,
               }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             />
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
             
             {/* Category badge */}
             <div className="absolute top-4 right-4">
-              <Badge variant="secondary" className="backdrop-blur-sm bg-background/80">
+              <Badge variant="secondary" className="backdrop-blur-md bg-background/90 shadow-sm px-3 py-1">
                 {project.category}
               </Badge>
             </div>
           </div>
 
           {/* Front content */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 space-y-4">
-            <div className="flex items-start gap-4">
-              <motion.div
-                className="p-3 bg-primary/10 rounded-xl flex-shrink-0"
-                animate={{
-                  rotate: isFlipped ? 360 : 0,
-                }}
-                transition={{ duration: 0.7 }}
-              >
-                <IconComponent className="h-6 w-6 text-primary" />
-              </motion.div>
-              <div className="flex-1 space-y-2">
-                <h3 className="text-xl font-bold text-foreground line-clamp-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {project.duration}
-                </p>
+          <div className="absolute bottom-0 left-0 right-0 p-6 space-y-5">
+            <div className="space-y-3">
+              <h3 className="text-2xl font-bold text-foreground leading-tight line-clamp-2">
+                {project.title}
+              </h3>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Calendar className="h-3.5 w-3.5" />
+                <span>{project.duration}</span>
               </div>
             </div>
             
             {/* Description preview */}
-            <p className="text-sm text-muted-foreground line-clamp-3">
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
               {project.description}
             </p>
             
             {/* Skills preview */}
             <div className="flex flex-wrap gap-2">
-              {project.skills.slice(0, 3).map((skill, idx) => (
-                <Badge key={idx} variant="outline" className="text-xs">
+              {project.skills.slice(0, 4).map((skill, idx) => (
+                <Badge key={idx} variant="outline" className="text-xs px-2.5 py-0.5">
                   {skill}
                 </Badge>
               ))}
-              {project.skills.length > 3 && (
-                <Badge variant="ghost" className="text-xs">
-                  +{project.skills.length - 3}
+              {project.skills.length > 4 && (
+                <Badge variant="ghost" className="text-xs px-2.5 py-0.5">
+                  +{project.skills.length - 4} more
                 </Badge>
               )}
             </div>
 
             {/* Hover indicator */}
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">Hover for details</span>
+            <div className="flex items-center justify-end pt-2">
               <motion.div
+                className="flex items-center gap-1 text-xs text-muted-foreground"
                 animate={{
-                  x: [0, 5, 0],
+                  x: [0, 4, 0],
                 }}
                 transition={{
-                  duration: 1.5,
+                  duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
               >
-                <ArrowRight className="h-4 w-4 text-primary" />
+                <span>Hover for details</span>
+                <ArrowRight className="h-3.5 w-3.5" />
               </motion.div>
             </div>
           </div>
@@ -155,42 +145,36 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
           {/* Back gradient accent */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
           
-          <div className="relative z-10 flex-1 space-y-5">
+          <div className="relative z-10 flex flex-col h-full">
             {/* Header */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <IconComponent className="h-5 w-5 text-primary" />
-                </div>
-                <h3 className="text-lg font-bold text-foreground">
-                  {project.title}
-                </h3>
-              </div>
+            <div className="space-y-4 mb-6">
+              <h3 className="text-xl font-bold text-foreground leading-tight">
+                {project.title}
+              </h3>
               
               {/* Meta info */}
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Calendar className="h-3 w-3" />
+              <div className="space-y-2.5">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Calendar className="h-3.5 w-3.5" />
                   <span>{project.duration}</span>
                 </div>
-                <div className="flex items-start gap-2 text-muted-foreground">
-                  <User className="h-3 w-3 mt-0.5" />
-                  <span className="line-clamp-2">{project.guide}</span>
+                <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <User className="h-3.5 w-3.5 mt-0.5 flex-shrink-0" />
+                  <span className="leading-relaxed">{project.guide}</span>
                 </div>
               </div>
             </div>
 
             {/* Key Achievements */}
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                <Rocket className="h-4 w-4 text-primary" />
+            <div className="space-y-3 mb-6 flex-1">
+              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                 Key Achievements
               </h4>
-              <ul className="space-y-2">
-                {project.achievements.slice(0, 3).map((achievement, index) => (
+              <ul className="space-y-2.5">
+                {project.achievements.slice(0, 4).map((achievement, index) => (
                   <motion.li
                     key={index}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
+                    className="flex items-start gap-2.5 text-sm text-muted-foreground"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
@@ -199,30 +183,29 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
                     }}
                   >
                     <div className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                    <span className="line-clamp-2">{achievement}</span>
+                    <span className="leading-relaxed">{achievement}</span>
                   </motion.li>
                 ))}
               </ul>
             </div>
 
             {/* Technologies */}
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                <Code2 className="h-4 w-4 text-primary" />
-                Technologies
+            <div className="space-y-3 mt-auto">
+              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+                Technologies & Skills
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {project.skills.map((skill, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
-                      delay: index * 0.05 + 0.3,
+                      delay: index * 0.03 + 0.3,
                       duration: 0.2,
                     }}
                   >
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="text-xs px-2.5 py-0.5">
                       {skill}
                     </Badge>
                   </motion.div>
@@ -230,45 +213,6 @@ const FlipProjectCard = ({ project }: FlipProjectCardProps) => {
               </div>
             </div>
           </div>
-
-          {/* CTA */}
-          <motion.div
-            className="relative z-10 mt-auto border-t border-border pt-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <div
-              className={cn(
-                'group/cta relative',
-                'flex items-center justify-between',
-                'rounded-lg p-3',
-                'transition-all duration-300',
-                'bg-muted/50',
-                'hover:bg-primary/10',
-                'hover:scale-[1.02] cursor-pointer',
-                'border border-transparent hover:border-primary/20'
-              )}
-            >
-              <span className="text-sm font-semibold text-foreground group-hover/cta:text-primary transition-colors">
-                View Full Details
-              </span>
-              <div className="relative">
-                <motion.div
-                  animate={{
-                    x: [0, 3, 0],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <ArrowRight className="h-4 w-4 text-primary" />
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </motion.div>
     </div>
