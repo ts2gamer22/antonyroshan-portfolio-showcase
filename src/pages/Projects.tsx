@@ -1,22 +1,18 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import AnimatedProjectCard from '@/components/projects/AnimatedProjectCard';
+import FlipProjectCard from '@/components/projects/FlipProjectCard';
 import ProjectGrid from '@/components/projects/ProjectGrid';
 import ProjectFilters from '@/components/projects/ProjectFilters';
 import { Brain, Microscope, Shield, Factory, BarChart3, Network } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
-// Import project images - Using fallback for missing images
-// TODO: Add actual project images to src/assets/ folder
-const placeholderImage = 'https://via.placeholder.com/600x400/1a1f36/8b92a9?text=Project+Image';
-
-// For now, using placeholder images until actual images are added
-const neuroplasticityImg = placeholderImage;
-const unileverImg = placeholderImage;
-const ppeImg = placeholderImage;
-const wabagImg = placeholderImage;
-const drugDeliveryImg = placeholderImage;
-const metabolicImg = placeholderImage;
+// Using Unsplash images for projects - these match the project themes
+const neuroplasticityImg = 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop'; // Brain neural network
+const unileverImg = 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&h=600&fit=crop'; // Laboratory research
+const ppeImg = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop'; // Safety technology
+const wabagImg = 'https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?w=800&h=600&fit=crop'; // Water treatment plant
+const drugDeliveryImg = 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&h=600&fit=crop'; // Pharmaceutical research
+const metabolicImg = 'https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=800&h=600&fit=crop'; // Molecular biology
 
 const Projects = () => {
   const projects = [
@@ -152,7 +148,7 @@ const Projects = () => {
             />
             <ProjectGrid>
               {filteredProjects.map((project, index) => (
-                <AnimatedProjectCard key={project.id} project={project} index={index} />
+                <FlipProjectCard key={project.id} project={project} index={index} />
               ))}
             </ProjectGrid>
           </div>
