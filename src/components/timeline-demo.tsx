@@ -1,6 +1,12 @@
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import img2025 from "@/assets/antodark.png"; // fallback until anto1 is added
+import img2024 from "@/assets/anto2.JPG";
+import img202124 from "@/assets/anto3.jpeg";
+import img2023_2024 from "@/assets/anto4.png";
+import img2021_adm from "@/assets/anto5.jpg";
+import img2021_hs from "@/assets/anto6.png";
 
 export default function TimelineDemo() {
   const data = [
@@ -10,7 +16,7 @@ export default function TimelineDemo() {
         <div>
           <h3 className="text-lg font-semibold text-foreground">Doctoral Studies at Johns Hopkins University</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src="/timeline/anto1.png" alt="2025 Doctoral Studies" />
+            <TLImage src={img2025} alt="2025 Doctoral Studies" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
             Current PhD student in Chemical and Biomolecular Engineering Department.
@@ -24,7 +30,7 @@ export default function TimelineDemo() {
         <div>
           <h3 className="text-lg font-semibold text-foreground">Graduated IIT Madras</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src="/timeline/anto2.png" alt="2024 Graduation" />
+            <TLImage src={img2024} alt="2024 Graduation" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
             B.Tech in Chemical Engineering with Minor in Bioprocess Engineering (CGPA: 9.31/10.00).
@@ -38,7 +44,7 @@ export default function TimelineDemo() {
         <div>
           <h3 className="text-lg font-semibold text-foreground">Academic Excellence at IIT Madras</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src="/timeline/anto5.png" alt="2021-2024 Academic Excellence" />
+            <TLImage src={img202124} alt="2021-2024 Academic Excellence" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
             Ranked #1 out of 117 students in Chemical Engineering cohort.
@@ -52,7 +58,7 @@ export default function TimelineDemo() {
         <div>
           <h3 className="text-lg font-semibold text-foreground">Leadership Role</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src="/timeline/anto4.png" alt="2023-2024 Leadership" />
+            <TLImage src={img2023_2024} alt="2023-2024 Leadership" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
             Corporate Relations Head at Entrepreneurship Cell IIT Madras, managing 25-member team.
@@ -66,7 +72,7 @@ export default function TimelineDemo() {
         <div>
           <h3 className="text-lg font-semibold text-foreground">IIT Madras Admission</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src="/timeline/anto5.png" alt="2021 IIT Admission" />
+            <TLImage src={img2021_adm} alt="2021 IIT Admission" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
             Top 0.47% performance in JEE Advanced among 1.3 million candidates.
@@ -80,7 +86,7 @@ export default function TimelineDemo() {
         <div>
           <h3 className="text-lg font-semibold text-foreground">High School Excellence</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src="/timeline/anto6.png" alt="2021 High School" />
+            <TLImage src={img2021_hs} alt="2021 High School" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
             Class XII from St. Michael's Academy, Chennai with 99.6% CGPA.
