@@ -3,64 +3,73 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
-// This component mirrors the provided "Integrations" mock, adapted for Vite/React.
-// It renders 6 expertise icons you can place in public/skills as PNGs.
+// My Expertise section inspired by the "Integrations" mock.
+// Uses 6 PNG icons from public/skills and draws connector lines to a center tile.
 
-const ICONS = [
+const leftIcons = [
   { src: '/skills/python.png', alt: 'Python' },
-  { src: '/skills/matlab.png', alt: 'MATLAB' },
   { src: '/skills/pytorch.png', alt: 'PyTorch' },
-  { src: '/skills/tensorflow.png', alt: 'TensorFlow' },
   { src: '/skills/numpy.png', alt: 'NumPy' },
+];
+const rightIcons = [
+  { src: '/skills/matlab.png', alt: 'MATLAB' },
+  { src: '/skills/tensorflow.png', alt: 'TensorFlow' },
   { src: '/skills/pandas.png', alt: 'Pandas' },
 ];
 
 export default function SkillsNew() {
-  const rows = [
-    ICONS.slice(0, 2), // Row 1: Python, MATLAB
-    ICONS.slice(2, 4), // Row 2: PyTorch, TensorFlow
-    ICONS.slice(4, 6), // Row 3: NumPy, Pandas
-  ];
-
   return (
     <section>
       <div className="bg-muted dark:bg-background py-24 md:py-32">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="relative mx-auto w-fit">
-            {/* subtle radial overlay */}
-            <div role="presentation" className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--muted))_75%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--background))_75%)]" />
-
-            {/* Icon rows */}
-            <div className="mx-auto mb-2 flex w-fit justify-center gap-2">
-              {rows[0].map((icon) => (
-                <IntegrationCard key={icon.alt}>
-                  <IconImg {...icon} />
-                </IntegrationCard>
-              ))}
+          {/* Icon constellation */}
+          <div className="relative mx-auto flex max-w-sm items-center justify-between">
+            {/* Left column */}
+            <div className="space-y-6">
+              <IntegrationCard position="left-top">
+                <IconImg {...leftIcons[0]} />
+              </IntegrationCard>
+              <IntegrationCard position="left-middle">
+                <IconImg {...leftIcons[1]} />
+              </IntegrationCard>
+              <IntegrationCard position="left-bottom">
+                <IconImg {...leftIcons[2]} />
+              </IntegrationCard>
             </div>
 
+            {/* Center tile */}
             <div className="mx-auto my-2 flex w-fit justify-center gap-2">
-              {rows[1].map((icon) => (
-                <IntegrationCard key={icon.alt}>
-                  <IconImg {...icon} />
+              <div className="relative z-20 rounded-2xl border border-black/25 p-1 shadow-xl shadow-black/10 dark:border-white/25 dark:shadow-white/10">
+                <IntegrationCard className="size-16 dark:bg-background" isCenter>
+                  <CenterMark />
                 </IntegrationCard>
-              ))}
+              </div>
             </div>
 
-            <div className="mx-auto flex w-fit justify-center gap-2">
-              {rows[2].map((icon) => (
-                <IntegrationCard key={icon.alt}>
-                  <IconImg {...icon} />
-                </IntegrationCard>
-              ))}
+            {/* Dotted radial overlay */}
+            <div
+              role="presentation"
+              className="absolute inset-1/3 opacity-50 [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] bg-[radial-gradient(#000_1px,transparent_1px)] dark:bg-[radial-gradient(#fff_1px,transparent_1px)]"
+            />
+
+            {/* Right column */}
+            <div className="space-y-6">
+              <IntegrationCard position="right-top">
+                <IconImg {...rightIcons[0]} />
+              </IntegrationCard>
+              <IntegrationCard position="right-middle">
+                <IconImg {...rightIcons[1]} />
+              </IntegrationCard>
+              <IntegrationCard position="right-bottom">
+                <IconImg {...rightIcons[2]} />
+              </IntegrationCard>
             </div>
           </div>
 
           {/* Heading + CTA */}
-          <div className="mx-auto mt-6 max-w-lg space-y-6 text-center">
+          <div className="mx-auto mt-12 max-w-lg space-y-6 text-center">
             <h2 className="text-balance text-3xl font-semibold md:text-4xl">My Expertise</h2>
-            <p className="text-muted-foreground">A focused toolkit for research and engineering — drop 6 PNG icons into public/skills to populate this grid.</p>
-
+            <p className="text-muted-foreground">A focused toolkit for research and engineering — now displayed with connected tiles like the reference.</p>
             <Button variant="outline" size="sm" asChild>
               <Link to="/projects">Explore Projects</Link>
             </Button>
@@ -76,9 +85,8 @@ function IconImg({ src, alt }: { src: string; alt: string }) {
     <img
       src={src}
       alt={alt}
-      className="size-8"
+      className="size-6"
       onError={(e) => {
-        // Fallback to a placeholder if the icon is not present yet
         const el = e.currentTarget as HTMLImageElement;
         if (el.src !== window.location.origin + '/placeholder.svg') {
           el.src = '/placeholder.svg';
@@ -88,11 +96,33 @@ function IconImg({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-const IntegrationCard = ({ children, className, borderClassName }: { children: React.ReactNode; className?: string; borderClassName?: string }) => {
+function CenterMark() {
   return (
-    <div className={cn('bg-background relative flex size-20 rounded-xl dark:bg-transparent', className)}>
-      <div role="presentation" className={cn('absolute inset-0 rounded-xl border border-black/20 dark:border-white/25', borderClassName)} />
-      <div className="relative z-20 m-auto size-fit *:size-8">{children}</div>
+    <div className="grid place-items-center size-8 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 text-primary font-semibold">
+      AR
+    </div>
+  );
+}
+
+type Pos = 'left-top' | 'left-middle' | 'left-bottom' | 'right-top' | 'right-middle' | 'right-bottom';
+
+const IntegrationCard = ({ children, className, position, isCenter = false }: { children: React.ReactNode; className?: string; position?: Pos; isCenter?: boolean }) => {
+  return (
+    <div className={cn('bg-background relative flex size-12 rounded-xl border border-border dark:bg-transparent', className)}>
+      <div className={cn('relative z-20 m-auto size-fit *:size-6', isCenter && '*:size-8')}>{children}</div>
+      {position && !isCenter && (
+        <div
+          className={cn(
+            'absolute z-10 h-px bg-gradient-to-r from-transparent to-muted-foreground/30',
+            position === 'left-top' && 'left-full top-1/2 w-[130px] origin-left rotate-[25deg]',
+            position === 'left-middle' && 'left-full top-1/2 w-[120px] origin-left',
+            position === 'left-bottom' && 'left-full top-1/2 w-[130px] origin-left -rotate-[25deg]',
+            position === 'right-top' && 'right-full top-1/2 w-[130px] origin-right -rotate-[25deg] bg-gradient-to-l',
+            position === 'right-middle' && 'right-full top-1/2 w-[120px] origin-right bg-gradient-to-l',
+            position === 'right-bottom' && 'right-full top-1/2 w-[130px] origin-right rotate-[25deg] bg-gradient-to-l'
+          )}
+        />
+      )}
     </div>
   );
 };
