@@ -1,12 +1,12 @@
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import img2025 from "@/assets/antodark.png"; // fallback until anto1 is added
-import img2024 from "@/assets/anto2.JPG";
-import img202124 from "@/assets/anto3.jpeg";
-import img2023_2024 from "@/assets/anto4.png";
-import img2021_adm from "@/assets/anto5.jpg";
-import img2021_hs from "@/assets/anto6.png";
+import img2025 from "../assets/antodark.png"; // fallback until anto1 is added
+import img2024 from "../assets/anto2.JPG";
+import img202124 from "../assets/anto3.jpeg";
+import img2023_2024 from "../assets/anto4.png";
+import img2021_adm from "../assets/anto5.jpg";
+import img2021_hs from "../assets/anto6.png";
 
 export default function TimelineDemo() {
   const data = [
