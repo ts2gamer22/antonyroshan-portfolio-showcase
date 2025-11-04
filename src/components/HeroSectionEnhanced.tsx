@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Mail, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import AuroraBackground from '@/components/backgrounds/AuroraBackground';
-import FloatingParticles from '@/components/backgrounds/FloatingParticles';
 import antonyHeadshot from '@/assets/anto.jpeg';
 
 const HeroSectionEnhanced = () => {
-  const prefersReducedMotion = usePrefersReducedMotion();
   const [imageLoaded, setImageLoaded] = useState(false);
   
   const scrollToContent = () => {
@@ -22,13 +18,7 @@ const HeroSectionEnhanced = () => {
   const roles = ['Doctoral Student', 'Johns Hopkins University', 'Chemical & Biomolecular Engineering'];
   
   return (
-    <AuroraBackground className="relative min-h-screen">
-      <FloatingParticles 
-        quantity={5} 
-        color="rgba(120, 119, 198, 0.08)" 
-        className="z-0"
-      />
-      
+    <div className="relative min-h-screen bg-background">
       <section className="relative pt-32 pb-20 px-6 sm:px-8 lg:px-12 min-h-screen flex items-center">
         <div className="container max-w-7xl mx-auto relative z-10">
           {/* Mobile: Title first, then image, then rest */}
@@ -165,7 +155,7 @@ const HeroSectionEnhanced = () => {
           <ChevronDown size={24} className="opacity-60" />
         </button>
       </section>
-    </AuroraBackground>
+    </div>
   );
 };
 
