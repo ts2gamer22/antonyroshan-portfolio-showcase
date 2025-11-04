@@ -60,8 +60,8 @@ const FeaturedProjects = () => {
             return (
               <Reveal key={project.id}>
                 <Card 
-                  className={`p-8 transition-all duration-300 hover:shadow-hover hover:-translate-y-2 border-0 shadow-card ${
-                    project.highlight ? 'bg-card-gradient ring-2 ring-primary/10' : 'bg-card'
+                  className={`p-8 transition-all duration-300 hover:shadow-hover hover:-translate-y-2 shadow-card ${
+                    project.highlight ? 'bg-card border-2 border-primary/20' : 'bg-card border border-border'
                   }`}
                 >
                   <div className="space-y-6">
