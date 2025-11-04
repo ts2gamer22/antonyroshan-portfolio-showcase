@@ -2,21 +2,12 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import TimelineDemo from "@/components/timeline-demo";
 import { Badge } from "@/components/ui/badge";
-import SkillsNew from "@/components/SkillsNew";
+import SkillsModern from "@/components/SkillsModern";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import antoDarkImage from '@/assets/antodark.jpeg';
 
 const About = () => {
-  const interests = [
-    "Bioprocess Engineering",
-    "Machine Learning",
-    "Computational Modeling",
-    "Neuroplasticity Research",
-    "Process Optimization",
-    "Spectral Graph Theory"
-  ];
-
   const { ref: heroRef, inView: heroInView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -107,43 +98,17 @@ const About = () => {
 
         {/* Skills Section */}
         <section className="px-4 sm:px-6 lg:px-8 mb-16">
-          <SkillsNew />
-        </section>
-
-        {/* Research Interests */}
-        <section className="px-4 sm:px-6 lg:px-8 mb-16">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-3xl font-bold text-foreground mb-8"
+              className="text-3xl font-bold text-foreground mb-12 text-center"
             >
-              Research Interests
+              Technical Expertise
             </motion.h2>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="flex flex-wrap justify-center gap-3"
-            >
-              {interests.map((interest, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Badge variant="secondary" className="px-4 py-2 text-sm">
-                    {interest}
-                  </Badge>
-                </motion.div>
-              ))}
-            </motion.div>
+            <SkillsModern />
           </div>
         </section>
 

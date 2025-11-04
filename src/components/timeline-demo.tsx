@@ -11,29 +11,29 @@ import img2021_hs from "../assets/anto6.png";
 export default function TimelineDemo() {
   const data = [
     {
-      title: "2025",
+      title: "2021",
       content: (
         <div>
-          <h3 className="text-lg font-semibold text-foreground">Doctoral Studies at Johns Hopkins University</h3>
+          <h3 className="text-lg font-semibold text-foreground">High School Excellence</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src={img2025} alt="2025 Doctoral Studies" />
+            <TLImage src={img2021_hs} alt="2021 High School" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
-            Current PhD student in Chemical and Biomolecular Engineering Department.
+            Class XII from St. Michael's Academy, Chennai with 99.6% CGPA.
           </p>
         </div>
       ),
     },
     {
-      title: "2024",
+      title: "2021",
       content: (
         <div>
-          <h3 className="text-lg font-semibold text-foreground">Graduated IIT Madras</h3>
+          <h3 className="text-lg font-semibold text-foreground">IIT Madras Admission</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src={img2024} alt="2024 Graduation" />
+            <TLImage src={img2021_adm} alt="2021 IIT Admission" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
-            B.Tech in Chemical Engineering with Minor in Bioprocess Engineering (CGPA: 9.31/10.00).
+            Top 0.47% performance in JEE Advanced among 1.3 million candidates.
           </p>
         </div>
       ),
@@ -67,29 +67,29 @@ export default function TimelineDemo() {
       ),
     },
     {
-      title: "2021",
+      title: "2024",
       content: (
         <div>
-          <h3 className="text-lg font-semibold text-foreground">IIT Madras Admission</h3>
+          <h3 className="text-lg font-semibold text-foreground">Graduated IIT Madras</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src={img2021_adm} alt="2021 IIT Admission" />
+            <TLImage src={img2024} alt="2024 Graduation" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
-            Top 0.47% performance in JEE Advanced among 1.3 million candidates.
+            B.Tech in Chemical Engineering with Minor in Bioprocess Engineering (CGPA: 9.31/10.00).
           </p>
         </div>
       ),
     },
     {
-      title: "2021",
+      title: "2025",
       content: (
         <div>
-          <h3 className="text-lg font-semibold text-foreground">High School Excellence</h3>
+          <h3 className="text-lg font-semibold text-foreground">Doctoral Studies at Johns Hopkins University</h3>
           <div className="mt-3 md:mt-4">
-            <TLImage src={img2021_hs} alt="2021 High School" />
+            <TLImage src={img2025} alt="2025 Doctoral Studies" />
           </div>
           <p className="mt-3 text-sm md:mt-4 md:text-base text-muted-foreground">
-            Class XII from St. Michael's Academy, Chennai with 99.6% CGPA.
+            Current PhD student in Chemical and Biomolecular Engineering Department.
           </p>
         </div>
       ),
