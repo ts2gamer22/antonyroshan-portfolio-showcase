@@ -259,75 +259,79 @@ const Navigation = () => {
               </motion.div>
             </div>
           </div>
-
-          {/* Mobile Navigation Drawer */}
-          <AnimatePresence>
-            {isOpen && (
-              <>
-                {/* Backdrop */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onClick={() => setIsOpen(false)}
-                  className="fixed inset-0 bg-black/50 z-40 md:hidden"
-                />
-                
-                {/* Drawer */}
-                <motion.nav
-                  id="mobile-menu"
-                  role="dialog"
-                  aria-modal="true"
-                  ref={drawerRef}
-                  variants={mobileMenuVariants}
-                  initial="closed"
-                  animate="open"
-                  exit="closed"
-                  className="fixed right-0 top-0 bottom-0 w-80 max-w-[85vw] bg-background border-l border-border z-50 md:hidden overflow-y-auto"
-                >
-                  <div className="p-6">
-                    <div className="flex justify-between items-center mb-8">
-                      <span className="text-xl font-semibold">Menu</span>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => setIsOpen(false)}
-                        aria-label="Close menu"
-                      >
-                        <X />
-                      </Button>
-                    </div>
-                    
-                    <motion.ul className="space-y-4">
-                      {navigation.map((item) => {
-                        const active = isActive(item.href);
-                        return (
-                          <motion.li key={item.name} variants={mobileItemVariants}>
-                            <Link
-                              to={item.href}
-                              className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                                active
-                                  ? 'bg-primary/10 text-primary'
-                                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                              }`}
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {item.name}
-                            </Link>
-                          </motion.li>
-                        );
-                      })}
-                    </motion.ul>
-                    
-                    <div className="mt-8 pt-8 border-t border-border flex justify-center">
-                      <ThemeToggle />
-                    </div>
-                  </div>
-                </motion.nav>
-              </>
-            )}
-          </AnimatePresence>
         </motion.nav>
+      )}
+    </AnimatePresence>
+
+    {/* Mobile Navigation Drawer (MOVED OUTSIDE) */}
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/50 z-[110] md:hidden"
+          />
+          
+          {/* Drawer */}
+          <motion.nav
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            ref={drawerRef}
+            variants={mobileMenuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="fixed right-0 top-0 h-full w-80 max-w-[85vw] bg-background dark:bg-card border-l-2 border-border z-[120] md:hidden overflow-y-auto"
+            style={{ 
+              willChange: 'transform',
+              boxShadow: '-8px 0 24px rgba(0, 0, 0, 0.15)',
+            }}
+          >
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-8">
+                <span className="text-xl font-semibold">Menu</span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <X />
+                </Button>
+              </div>
+              
+              <motion.ul className="space-y-4">
+                {navigation.map((item) => {
+                  const active = isActive(item.href);
+                  return (
+                    <motion.li key={item.name} variants={mobileItemVariants}>
+                      <Link
+                        to={item.href}
+                        className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                          active
+                            ? 'bg-primary/10 text-primary'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                        }`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.li>
+                  );
+                })}
+              </motion.ul>
+              
+              <div className="mt-8 pt-8 border-t border-border flex justify-center">
+                <ThemeToggle />
+              </div>
+            </div>
+          </motion.nav>
+        </>
       )}
     </AnimatePresence>
     </>
