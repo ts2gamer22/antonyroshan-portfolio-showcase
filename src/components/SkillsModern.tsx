@@ -1,13 +1,19 @@
 import { motion } from 'framer-motion';
+import pythonImg from '@/assets/python.png';
+import matlabImg from '@/assets/matlab.png';
+import pytorchImg from '@/assets/pytorch.png';
+import tensorflowImg from '@/assets/tensorflow.png';
+import numpyImg from '@/assets/numpy.png';
+import pandasImg from '@/assets/pandas.png';
 
 const SkillsModern = () => {
   const skills = [
-    { name: 'Python', image: '/skills/python.png' },
-    { name: 'MATLAB', image: '/skills/matlab.png' },
-    { name: 'PyTorch', image: '/skills/pytorch.png' },
-    { name: 'TensorFlow', image: '/skills/tensorflow.png' },
-    { name: 'NumPy', image: '/skills/numpy.png' },
-    { name: 'Pandas', image: '/skills/pandas.png' },
+    { name: 'Python', image: pythonImg },
+    { name: 'MATLAB', image: matlabImg },
+    { name: 'PyTorch', image: pytorchImg },
+    { name: 'TensorFlow', image: tensorflowImg },
+    { name: 'NumPy', image: numpyImg },
+    { name: 'Pandas', image: pandasImg },
   ];
 
   return (
